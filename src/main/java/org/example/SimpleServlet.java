@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.http.whiteboard.propertytypes.HttpWhiteboardServletAsyncSupported;
 import org.osgi.service.http.whiteboard.propertytypes.HttpWhiteboardServletPattern;
 
@@ -35,6 +36,9 @@ import org.osgi.service.http.whiteboard.propertytypes.HttpWhiteboardServletPatte
 @HttpWhiteboardServletPattern("/*")
 @WebServlet(urlPatterns = "/*")
 public class SimpleServlet extends HttpServlet {
+
+    @Reference
+    private TestServletContextListener listener;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
